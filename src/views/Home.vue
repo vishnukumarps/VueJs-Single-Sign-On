@@ -14,6 +14,7 @@
 </template>
 <script>
 // @ is an alias to /src
+//import aad from "../services/add";
 import GoogleLogin from "vue-google-login";
 import HelloWorld from "@/components/HelloWorld.vue";
 require("isomorphic-fetch"); // or another library of choice.
@@ -91,6 +92,10 @@ export default {
       alert("fail");
     }
   },
+  loginWithMicrosoft() {
+      // aad.login().then((account) => {
+      // });
+    },
   mounted() {
     this.Authenicate();
     console.log("mounted");
