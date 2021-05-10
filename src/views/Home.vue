@@ -32,7 +32,6 @@ export default {
           console.error(error);
         });
     },
-
     async connectToDropbox() {
       var dbx = new Dropbox.Dropbox({ clientId: "2jcyfio39bexhql" });
       var authUrl = await dbx.auth.getAuthenticationUrl(
