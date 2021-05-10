@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <GoogleLogin :params="params" :onSuccess="onSuccessGoogle" :onFailure="onFailureGoogle"
-      >Login</GoogleLogin
+      >Sign with Google</GoogleLogin
     >
     <br />
     <button @click="connectToDropbox()">Login With Dropbox</button>
