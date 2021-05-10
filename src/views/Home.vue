@@ -1,7 +1,11 @@
 <template>
   <div class="home">
+    <GoogleLogin :params="params" :onSuccess="onSuccessGoogle" :onFailure="onFailureGoogle"
+      >Login</GoogleLogin
+    >
     <br />
     <button @click="connectToDropbox()">Login With Dropbox</button>
+
     <br />
     <a id="authlink">c</a>
     <img alt="Vue logo" src="../assets/logo.png" />
@@ -10,12 +14,14 @@
 </template>
 <script>
 // @ is an alias to /src
+import GoogleLogin from "vue-google-login";
 import HelloWorld from "@/components/HelloWorld.vue";
 require("isomorphic-fetch"); // or another library of choice.
 var Dropbox = require("dropbox");
 export default {
   name: "Home",
   components: {
+    GoogleLogin,
     HelloWorld,
   },
   methods: {
@@ -75,10 +81,34 @@ export default {
           });
       }
     },
+    onSuccessGoogle(googleUser) {
+      console.log(JSON.stringify(googleUser));
+
+      // This only gets the user information: id, name, imageUrl and email
+      console.log(JSON.stringify(googleUser.getBasicProfile()));
+    },
+    onFailureGoogle(){
+      alert("fail");
+    }
   },
   mounted() {
     this.Authenicate();
     console.log("mounted");
+  },
+  data() {
+    return {
+      // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
+      params: {
+        client_id:
+          "811744160463-5jnjap4r0f3ais79ou33f25kvims2fjf.apps.googleusercontent.com",
+      },
+      // only needed if you want to render the button with the google ui
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true,
+      },
+    };
   },
 };
 </script>
