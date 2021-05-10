@@ -40,13 +40,15 @@ export default {
       window.location.href = authUrl;
     },
     Authenicate() {
-      var url_string = window.location.href;
-      console.log(url_string);
-      var accessToken = url_string
-        .toString()
-        .split("=")[2]
-        .toString()
-        .split("&")[0];
+      if (window.location.href != "http://localhost:8080/") {
+        var url_string = window.location.href;
+        console.log(url_string);
+        var accessToken = url_string
+          .toString()
+          .split("=")[2]
+          .toString()
+          .split("&")[0];
+      }
 
       console.log(accessToken);
 
